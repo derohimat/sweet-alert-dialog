@@ -12,13 +12,29 @@
         <item name="android:backgroundDimAmount">0.4</item>
     </style>
 
-    <style name="dialog_blue_button" parent="android:Widget.Button">
+
+    <style name="dialog_btn" parent="android:Widget.Button">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">31dp</item>
-        <item name="android:background">@drawable/blue_button_background</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:paddingLeft">21dp</item>
-        <item name="android:paddingRight">21dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:background">@drawable/cancel_btn_background</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:paddingRight">24dp</item>
+        <item name="android:textColor">@color/sd_button_text_color</item>
+    </style>
+
+    <style name="dialog_btn.cancel">
+        <item name="android:background">@drawable/cancel_btn_background</item>
+        <item name="android:textColor">@color/sd_button_text_color</item>
+    </style>
+
+    <style name="dialog_btn.confirm">
+        <item name="android:background">@drawable/confirm_btn_background</item>
+        <item name="android:textColor">@color/sd_button_text_color</item>
+    </style>
+
+    <style name="dialog_btn.warning">
+        <item name="android:background">@drawable/warning_btn_background</item>
         <item name="android:textColor">@color/sd_button_text_color</item>
     </style>
 </resources>

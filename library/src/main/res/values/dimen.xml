@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="alert_width">290dp</dimen>
-    <dimen name="common_circle_width">3dp</dimen>
+    <dimen name="alert_padding">16dp</dimen>
+    <dimen name="common_circle_width">4dp</dimen>
+    <dimen name="common_rounded">8dp</dimen>
+    <dimen name="common_spaces">8dp</dimen>
+    <dimen name="common_spaces_double">16dp</dimen>
     <dimen name="progress_circle_radius">34dp</dimen>
 </resources>

@@ -1,4 +1,4 @@
-package com.ontbee.legacyforks.cn.pedant.SweetAlert;
+package com.derohimat.sweetalertdialog;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,14 +9,14 @@ import android.util.TypedValue;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
-import com.ontbee.legacyforks.cn.pedant.SweetAlert.R;
-
 public class Rotate3dAnimation extends Animation {
+    public static final int ROLL_BY_X = 0;
+    public static final int ROLL_BY_Y = 1;
+    public static final int ROLL_BY_Z = 2;
     private int mPivotXType = ABSOLUTE;
     private int mPivotYType = ABSOLUTE;
     private float mPivotXValue = 0.0f;
     private float mPivotYValue = 0.0f;
-
     private float mFromDegrees;
     private float mToDegrees;
     private float mPivotX;
@@ -24,13 +24,57 @@ public class Rotate3dAnimation extends Animation {
     private Camera mCamera;
     private int mRollType;
 
-    public static final int ROLL_BY_X = 0;
-    public static final int ROLL_BY_Y = 1;
-    public static final int ROLL_BY_Z = 2;
+    public Rotate3dAnimation(Context context, AttributeSet attrs) {
+        super(context, attrs);
 
-    protected static class Description {
-        public int type;
-        public float value;
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Rotate3dAnimation);
+
+        mFromDegrees = a.getFloat(R.styleable.Rotate3dAnimation_fromDeg, 0.0f);
+        mToDegrees = a.getFloat(R.styleable.Rotate3dAnimation_toDeg, 0.0f);
+        mRollType = a.getInt(R.styleable.Rotate3dAnimation_rollType, ROLL_BY_X);
+        Description d = parseValue(a.peekValue(R.styleable.Rotate3dAnimation_pivotX));
+        mPivotXType = d.type;
+        mPivotXValue = d.value;
+
+        d = parseValue(a.peekValue(R.styleable.Rotate3dAnimation_pivotY));
+        mPivotYType = d.type;
+        mPivotYValue = d.value;
+
+        a.recycle();
+
+        initializePivotPoint();
+    }
+
+    public Rotate3dAnimation(int rollType, float fromDegrees, float toDegrees) {
+        mRollType = rollType;
+        mFromDegrees = fromDegrees;
+        mToDegrees = toDegrees;
+        mPivotX = 0.0f;
+        mPivotY = 0.0f;
+    }
+
+    public Rotate3dAnimation(int rollType, float fromDegrees, float toDegrees, float pivotX, float pivotY) {
+        mRollType = rollType;
+        mFromDegrees = fromDegrees;
+        mToDegrees = toDegrees;
+
+        mPivotXType = ABSOLUTE;
+        mPivotYType = ABSOLUTE;
+        mPivotXValue = pivotX;
+        mPivotYValue = pivotY;
+        initializePivotPoint();
+    }
+
+    public Rotate3dAnimation(int rollType, float fromDegrees, float toDegrees, int pivotXType, float pivotXValue, int pivotYType, float pivotYValue) {
+        mRollType = rollType;
+        mFromDegrees = fromDegrees;
+        mToDegrees = toDegrees;
+
+        mPivotXValue = pivotXValue;
+        mPivotXType = pivotXType;
+        mPivotYValue = pivotYValue;
+        mPivotYType = pivotYType;
+        initializePivotPoint();
     }
 
     Description parseValue(TypedValue value) {
@@ -61,59 +105,6 @@ public class Rotate3dAnimation extends Animation {
         d.value = 0.0f;
 
         return d;
-    }
-
-    public Rotate3dAnimation (Context context, AttributeSet attrs) {
-        super(context, attrs);
-
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Rotate3dAnimation);
-
-        mFromDegrees = a.getFloat(R.styleable.Rotate3dAnimation_fromDeg, 0.0f);
-        mToDegrees = a.getFloat(R.styleable.Rotate3dAnimation_toDeg, 0.0f);
-        mRollType = a.getInt(R.styleable.Rotate3dAnimation_rollType, ROLL_BY_X);
-        Description d = parseValue(a.peekValue(R.styleable.Rotate3dAnimation_pivotX));
-        mPivotXType = d.type;
-        mPivotXValue = d.value;
-
-        d = parseValue(a.peekValue(R.styleable.Rotate3dAnimation_pivotY));
-        mPivotYType = d.type;
-        mPivotYValue = d.value;
-
-        a.recycle();
-
-        initializePivotPoint();
-    }
-
-    public Rotate3dAnimation (int rollType, float fromDegrees, float toDegrees) {
-        mRollType = rollType;
-        mFromDegrees = fromDegrees;
-        mToDegrees = toDegrees;
-        mPivotX = 0.0f;
-        mPivotY = 0.0f;
-    }
-
-    public Rotate3dAnimation (int rollType, float fromDegrees, float toDegrees, float pivotX, float pivotY) {
-        mRollType = rollType;
-        mFromDegrees = fromDegrees;
-        mToDegrees = toDegrees;
-
-        mPivotXType = ABSOLUTE;
-        mPivotYType = ABSOLUTE;
-        mPivotXValue = pivotX;
-        mPivotYValue = pivotY;
-        initializePivotPoint();
-    }
-
-    public Rotate3dAnimation (int rollType, float fromDegrees, float toDegrees, int pivotXType, float pivotXValue, int pivotYType, float pivotYValue) {
-        mRollType = rollType;
-        mFromDegrees = fromDegrees;
-        mToDegrees = toDegrees;
-
-        mPivotXValue = pivotXValue;
-        mPivotXType = pivotXType;
-        mPivotYValue = pivotYValue;
-        mPivotYType = pivotYType;
-        initializePivotPoint();
     }
 
     private void initializePivotPoint() {
@@ -157,5 +148,10 @@ public class Rotate3dAnimation extends Animation {
 
         matrix.preTranslate(-mPivotX, -mPivotY);
         matrix.postTranslate(mPivotX, mPivotY);
+    }
+
+    protected static class Description {
+        public int type;
+        public float value;
     }
 }

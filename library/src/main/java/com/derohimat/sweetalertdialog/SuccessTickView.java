@@ -1,4 +1,4 @@
-package com.ontbee.legacyforks.cn.pedant.SweetAlert;
+package com.derohimat.sweetalertdialog;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,18 +9,15 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
-import com.ontbee.legacyforks.cn.pedant.SweetAlert.R;
-
 public class SuccessTickView extends View {
     private float mDensity = -1;
-    private Paint mPaint;
     private final float CONST_RADIUS = dip2px(1.2f);
     private final float CONST_RECT_WEIGHT = dip2px(3);
     private final float CONST_LEFT_RECT_W = dip2px(15);
     private final float CONST_RIGHT_RECT_W = dip2px(25);
     private final float MIN_LEFT_RECT_W = dip2px(3.3f);
     private final float MAX_RIGHT_RECT_W = CONST_RIGHT_RECT_W + dip2px(6.7f);
-
+    private Paint mPaint;
     private float mMaxLeftRectWidth;
     private float mLeftRectWidth;
     private float mRightRectWidth;
@@ -31,12 +28,12 @@ public class SuccessTickView extends View {
         init();
     }
 
-    public SuccessTickView(Context context, AttributeSet attrs){
-        super(context,attrs);
+    public SuccessTickView(Context context, AttributeSet attrs) {
+        super(context, attrs);
         init();
     }
 
-    private void init () {
+    private void init() {
         mPaint = new Paint();
         mPaint.setColor(getResources().getColor(R.color.sd_success_stroke_color));
         mLeftRectWidth = CONST_LEFT_RECT_W;
@@ -80,13 +77,13 @@ public class SuccessTickView extends View {
     }
 
     public float dip2px(float dpValue) {
-        if(mDensity == -1) {
+        if (mDensity == -1) {
             mDensity = getResources().getDisplayMetrics().density;
         }
         return dpValue * mDensity + 0.5f;
     }
 
-    public void startTickAnim () {
+    public void startTickAnim() {
         // hide tick
         mLeftRectWidth = 0;
         mRightRectWidth = 0;
