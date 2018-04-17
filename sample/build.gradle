@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 21
+        targetSdkVersion 27
     }
 
     lintOptions {
@@ -23,9 +23,9 @@ android {
             shrinkResources true
         }
     }
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.3'
 }
 
 dependencies {
-    compile project(':library')
+    implementation project(':library')
 }
