@@ -117,6 +117,7 @@ public class SampleActivity extends Activity implements View.OnClickListener {
                         .setTitleText("Sweet!")
                         .setContentText("Here's a custom image.")
                         .setCustomImage(R.drawable.custom_img)
+                        .showConfirmButton(true)
                         .show();
                 break;
             case R.id.progress_dialog:

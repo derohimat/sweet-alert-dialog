@@ -210,6 +210,7 @@ public class SweetAlertDialog extends Dialog implements View.OnClickListener {
                     break;
                 case CUSTOM_IMAGE_TYPE:
                     setCustomImage(mCustomImgDrawable);
+                    mConfirmButton.setVisibility(mShowConfirm ? View.VISIBLE : View.GONE);
                     break;
                 case PROGRESS_TYPE:
                     mProgressFrame.setVisibility(View.VISIBLE);
