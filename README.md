@@ -1,4 +1,4 @@
-## Attention: This is a fork of the apparently dead project https://github.com/pedant/sweet-alert-dialog/
+#### Attention: This is a fork of the apparently dead project https://github.com/pedant/sweet-alert-dialog/
 **The only changes made are to update it to work with materialish-progress 1.7 and the current gradle build tools.**
 
 The original readme with minor alterations follows.  I've removed the Chinese language readme as I can only read and write English.
@@ -19,7 +19,45 @@ Inspired by JavaScript [SweetAlert](http://tristanedwards.me/sweetalert)
 ![image](https://github.com/pedant/sweet-alert-dialog/raw/master/change_type.gif)
 
 ## Setup
-The simplest way to use SweetAlertDialog is to add the library as aar dependency to your build.  Tag v1.4.0 has the updates.  See: https://jitpack.io/ for full instructions.
+The simplest way to use SweetAlertDialog is to add the library as aar dependency to your build.
+
+### Gradle
+
+Add it in your root **build.gradle** at the end of repositories
+
+    allprojects {
+    	repositories {
+    		...
+    		maven { url 'https://jitpack.io' }
+    	}
+    }
+Add the dependency in your project level **build.gradle**
+
+    dependencies {
+        implementation 'com.github.derohimat:sweet-alert-dialog:2.0'
+    }
+
+### Update (Release-2.*)
+You can use following new methods to customize the UI elements.
+added from https://github.com/sahilgarg90/sweet-alert-dialog
+- setTitleTextAppearance(int resId)
+- isShowTitleText()
+- showTitleText(boolean isShow)
+- setContentTextAppearance(int resId)
+- setContentTextGravity(int gravity)
+- setCancelTextAppearance(int resId)
+- setCancelButtonBackground(int resId)
+- setCancelButtonWidth(int width)
+- setCancelButtonHeight(int height)
+- setCancelButtonPadding(int start, int top, int end, int bottom)
+- setConfirmTextAppearance(int resId)
+- setConfirmButtonBackground(int resId)
+- setConfirmButtonWidth(int width)
+- setConfirmButtonHeight(int height)
+- setConfirmButtonPadding(int start, int top, int end, int bottom)
+- isShowConfirmButton()
+- showConfirmButton(boolean isShow)
+- setHideKeyBoardOnDismiss(boolean hide) https://github.com/kaygenzo/sweet-alert-dialog/commit/437a706faefeb0fd088eee18352f2a8198f436e8?diff=split
 
 ## Usage
 
